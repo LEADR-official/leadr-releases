@@ -9,7 +9,7 @@ Terminal UI for managing your LEADR account and leaderboards.
 
 ### Windows
 
-Download latest binary from at [https://leadr.gg/windows](https://leadr.gg/download/windows).
+Download latest binary from at [https://leadr.gg/download/windows](https://leadr.gg/download/windows).
 
 #### Manual Download
 
