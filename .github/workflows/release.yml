@@ -1,0 +1,48 @@
+name: Release and Publish TUI
+
+on:
+  release:
+    types: [released]
+
+permissions:
+  contents: write
+
+jobs:
+  update-ui-redirect:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout leadr-ui repo
+        uses: actions/checkout@v4
+        with:
+          repository: LEADR-official/leadr-ui
+          token: ${{ secrets.LEADR_UI_PAT }}
+          ref: main
+
+      - name: Update TUI redirect URLs
+        run: |
+          VERSION="${{ github.event.release.tag_name }}"
+          CONFIG_FILE="apps/boards/next.config.ts"
+
+          # Update install.sh redirect (now points to leadr-releases)
+          sed -i.bak 's|https://raw.githubusercontent.com/LEADR-official/leadr-releases/refs/[^"]*install.sh|https://raw.githubusercontent.com/LEADR-official/leadr-releases/refs/tags/'"${VERSION}"'/install.sh|' "$CONFIG_FILE"
+          rm "${CONFIG_FILE}.bak"
+
+          # Update Windows executable redirect
+          sed -i.bak 's|https://github.com/LEADR-official/leadr-releases/releases/download/v[^/]*/leadr-v[^"]*-windows-x86_64.exe|https://github.com/LEADR-official/leadr-releases/releases/download/'"${VERSION}"'/leadr-'"${VERSION}"'-windows-x86_64.exe|' "$CONFIG_FILE"
+          rm "${CONFIG_FILE}.bak"
+
+          echo "Updated redirects to version ${VERSION}"
+
+      - name: Commit and push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add apps/boards/next.config.ts
+
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: update install redirect to ${{ github.event.release.tag_name }}"
+            git push
+          else
+            echo "No changes to commit"
+          fi
