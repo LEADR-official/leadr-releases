@@ -51,7 +51,7 @@ jobs:
           git add apps/boards/next.config.ts
 
           if ! git diff --staged --quiet; then
-            git commit -m "chore: update install redirect to ${{ github.event.release.tag_name }}"
+            git commit -m "chore: update redirects to ${{ github.event.release.tag_name || github.event.inputs.version }}"
             git push
           else
             echo "No changes to commit"
