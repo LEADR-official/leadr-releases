@@ -3,6 +3,12 @@ name: Update redirects
 on:
   release:
     types: [released]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version tag (e.g. v0.2.0)'
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -21,7 +27,7 @@ jobs:
 
       - name: Update TUI redirect URLs
         run: |
-          VERSION="${{ github.event.release.tag_name }}"
+          VERSION="${{ github.event.release.tag_name || github.event.inputs.version }}"
           CONFIG_FILE="apps/boards/next.config.ts"
 
           # Update install.sh redirect (now points to leadr-releases)
