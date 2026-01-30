@@ -34,6 +34,10 @@ jobs:
           sed -i.bak 's|https://raw.githubusercontent.com/LEADR-official/leadr-releases/refs/[^"]*install.sh|https://raw.githubusercontent.com/LEADR-official/leadr-releases/refs/tags/'"${VERSION}"'/install.sh|' "$CONFIG_FILE"
           rm "${CONFIG_FILE}.bak"
 
+          # Update base download redirect (GitHub release page)
+          sed -i.bak 's|https://github.com/LEADR-official/leadr-releases/releases/tag/v[0-9][^"]*|https://github.com/LEADR-official/leadr-releases/releases/tag/'"${VERSION}"'|' "$CONFIG_FILE"
+          rm "${CONFIG_FILE}.bak"
+
           # Update Windows executable redirect
           sed -i.bak 's|https://github.com/LEADR-official/leadr-releases/releases/download/v[^/]*/leadr-v[^"]*-windows-x86_64.exe|https://github.com/LEADR-official/leadr-releases/releases/download/'"${VERSION}"'/leadr-'"${VERSION}"'-windows-x86_64.exe|' "$CONFIG_FILE"
           rm "${CONFIG_FILE}.bak"
