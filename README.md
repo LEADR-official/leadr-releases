@@ -1,15 +1,17 @@
 # LEADR
 
-Terminal UI for managing your LEADR account and leaderboards.
+**Cross-platform leaderboards for game developers**. Add feature-rich leaderboards to your game on any platform, any engine, and unify all your players in one place.
 
-> [!TIP]
-> Need some help? Give us a shout on Discord: https://discord.gg/RMUukcAxSZ
+This is the LEADR app - a terminal UI for managing your LEADR account and leaderboards.
+
+> **New to LEADR?** Follow the [Quick Start guide](https://docs.leadr.gg/latest/quick-start/)
+> to create your account and set up your first leaderboard.
 
 ## Installation
 
 ### Windows
 
-Download latest binary from at [https://leadr.gg/download/windows](https://leadr.gg/download/windows).
+Download the latest version from [https://leadr.gg/download/windows](https://leadr.gg/download/windows).
 
 #### Manual Download
 
@@ -32,15 +34,22 @@ curl -sSL https://leadr.gg/download/install.sh | bash
 
 ### Verify the installation
 
+Optionally, verify the downloaded binary checksum [as shown here](https://docs.leadr.gg/latest/guides/install/#verify).
+
 ```bash
 leadr
 ```
 
-## Documentation
+## What's Next
 
-- **LEADR Docs**: https://docs.leadr.gg/latest/quick-start
-- **SDK Docs**: https://docs.leadr.gg/latest/sdks
+Now that you have the LEADR app installed:
 
-## Need some help?
+- **[Quick Start](https://docs.leadr.gg/latest/quick-start/)** - Register your account and create your first leaderboard
+- **[SDKs](https://docs.leadr.gg/latest/sdks/)** - Integrate LEADR into your game
+- **[Join the Community!](https://discord.gg/RMUukcAxSZ){"target"="_blank"}** - Get support and inspiration on the LEADR Discord
 
-Give us a shout on Discord: https://discord.gg/RMUukcAxSZ
+## Need Help?
+
+- [Discord](https://discord.gg/RMUukcAxSZ)
+- [Documentation](https://docs.leadr.gg)
+- [Report an issue](https://github.com/LEADR-official/leadr-releases/issues)
