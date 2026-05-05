@@ -28,7 +28,7 @@ jobs:
       - name: Update TUI redirect URLs
         run: |
           VERSION="${{ github.event.release.tag_name || github.event.inputs.version }}"
-          CONFIG_FILE="apps/boards/next.config.ts"
+          CONFIG_FILE="apps/ui/next.config.ts"
 
           # Update install.sh redirect (now points to leadr-releases)
           sed -i.bak 's|https://raw.githubusercontent.com/LEADR-official/leadr-releases/refs/[^"]*install.sh|https://raw.githubusercontent.com/LEADR-official/leadr-releases/refs/tags/'"${VERSION}"'/install.sh|' "$CONFIG_FILE"
@@ -48,7 +48,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add apps/boards/next.config.ts
+          git add apps/ui/next.config.ts
 
           if ! git diff --staged --quiet; then
             git commit -m "chore: update redirects to ${{ github.event.release.tag_name || github.event.inputs.version }}"
